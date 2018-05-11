@@ -7,14 +7,14 @@ green = 20
 blue = 21 
 
 GPIO.setwarnings(False)
-GPIO.setmode(DPIO.BCM)
+GPIO.setmode(11)
 GPIO.setup(red, GPIO.OUT)
 GPIO.setup(green, GPIO.OUT)
 GPIO.setup(blue, GPIO.OUT)
 
-rpwm = GPIO.PWM(red, 60)
-gpwm = GPIO.PWM(green, 60)
-bpwm = GPIO.PWM(blue, 60)
+rpwm = GPIO.PWM(red,1000 )
+gpwm = GPIO.PWM(green, 1000)
+bpwm = GPIO.PWM(blue, 1000)
 
 rpwm.start(0)
 gpwm.start(0)
@@ -49,7 +49,7 @@ def offLong(j, constant):
     for i in range (0,30):
         gpwm.ChangeDutyCycle(i*3)
         if i % 3 == 0:
-            pwm.ChangeDutyCycle((i)+1)
+            gpwm.ChangeDutyCycle((i)+1)
         time.sleep(constant)
     return
 
